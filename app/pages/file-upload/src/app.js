@@ -7,6 +7,9 @@ const worker = new Worker('./src/worker/worker.js', { type: 'module' })
 
 let took = ''
 
+worker.onerror = (error) => {
+    console.error('erro worker', error)
+}
 worker.onmessage = ({ data }) => {
     if (data.status !== 'done') return;
 
